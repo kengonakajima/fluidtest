@@ -167,9 +167,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1678099258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 177ff7b1c351b4cfba8a84344049d258, type: 3}
+  m_Script: {fileID: 11500000, guid: 43bd7ee084ee542ea8cc6c451b38b60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pitch: 0
+  yaw: 0
+  dy: 0
+  nose: {x: 0, y: 0, z: 0}
+  jumping: 0
 --- !u!1 &1814339090
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,10 +270,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1814339090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8417b51f256af42cbbaf8fdce6746827, type: 3}
+  m_Script: {fileID: 11500000, guid: 95e64463f223b4ddcad14c0ce2c5231f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  focusObj: {fileID: 0}
+  hero: {fileID: 0}
 --- !u!1 &1871728038
 GameObject:
   m_ObjectHideFlags: 0
