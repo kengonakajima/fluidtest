@@ -15,15 +15,6 @@ function Start () { // 最初に1回だけ呼ばれる
 	pitch = 0;
 	dy = 0;
 
-
-    for(var t = 0;t<16;t++){
-        for(var s = 0; s<16; s++){
-            var cu = Instantiate( cubeprefab,
-                                  Vector3( t*1.2 , tmpcounter0 *1.2, s*1.2 ),
-                                  Quaternion.identity );
-//            cubes.Push(cu);
-        }
-    }
 }
 
 var nose : Vector3; // こういう風に関数の外に変数定義するとGUIで見える
@@ -62,7 +53,7 @@ function Update () { // 毎フレーム呼ばれる
     var j = Input.GetButton( "Jump" );
     if(j){
         if( dy == 0 ){
-            dy = 0.1;
+            dy = 1;
             jumping = true;
         }
     }
@@ -80,5 +71,21 @@ function Update () { // 毎フレーム呼ばれる
     dtr.y = dy;
 
     transform.position += dtr;
+
+
+    // 物体生成
+    var f = Input.GetButton( "Fire1" );
+    if(f) {
+        for(var t = 0;t<16;t++){
+            for(var s = 0; s<16; s++){
+                var cu = Instantiate( cubeprefab,
+                                      Vector3( t*1.2 , tmpcounter0 *1.2, s*1.2 ),
+                                      Quaternion.identity );
+                //            cubes.Push(cu);
+            }
+        }
+        tmpcounter0 ++;
+    }
+    
 }
 
