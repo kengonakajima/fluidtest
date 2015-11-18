@@ -6,10 +6,24 @@ var pitch : float; // 主人公の向き
 var yaw : float; // 主人公の見上げる向き
 
 var dy : float;
+var tmpcounter0 = 1;
+
+var cubeprefab : Transform;
+
 
 function Start () { // 最初に1回だけ呼ばれる
 	pitch = 0;
 	dy = 0;
+
+
+    for(var t = 0;t<16;t++){
+        for(var s = 0; s<16; s++){
+            var cu = Instantiate( cubeprefab,
+                                  Vector3( t*1.2 , tmpcounter0 *1.2, s*1.2 ),
+                                  Quaternion.identity );
+//            cubes.Push(cu);
+        }
+    }
 }
 
 var nose : Vector3; // こういう風に関数の外に変数定義するとGUIで見える
