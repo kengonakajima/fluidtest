@@ -78,12 +78,15 @@ function Update () { // 毎フレーム呼ばれる
     if(f) {
         for(var t = 0;t<16;t++){
             for(var s = 0; s<16; s++){
+                var r = 10;
                 var cu = Instantiate( cubeprefab,
-                                      Vector3( t*1.2 , tmpcounter0 *1.2, s*1.2 ),
+                                      Vector3( t*r , tmpcounter0 *r, s*r ),
                                       Quaternion.identity );
                 //            cubes.Push(cu);
+                // (4x4x4) x 256 = 4096 cubes 
+                // (6x6x6) x 256 = 27648 cubes
             }
-        }
+        }        
         tmpcounter0 ++;
     }
     
