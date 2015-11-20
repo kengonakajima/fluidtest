@@ -10,11 +10,60 @@ var tmpcounter0 = 1;
 
 var cubeprefab : Transform;
 
+var locationAvailable = false;
+
+function prt(x) {
+    MenuWindow.setMessage(x);
+}
 
 function Start () { // 最初に1回だけ呼ばれる
 	pitch = 0;
 	dy = 0;
+/*
+    if( !Input.location.isEnabledByUser ) {
+//        Debug.Log( "no location service");
+        MenuWindow.setMessage( "no location service");
+    } else {
+        MenuWindow.setMessage( "GPS service available");
+        Input.location.Start();
+        locationAvailable = true;
+    }
+    */
 
+    // First, check if user has location service enabled
+    if (!Input.location.isEnabledByUser) {
+        prt("no locationservice");
+        return;
+    }
+    // Start service before querying location
+    Input.location.Start ();
+    // Wait until service initializes
+    var maxWait : int = 20;
+    while (Input.location.status
+           == LocationServiceStatus.Initializing && maxWait > 0) {
+        yield WaitForSeconds (1);
+        maxWait--;
+    }
+    // Service didn't initialize in 20 seconds
+    if (maxWait < 1) {
+        prt ("Timed out");
+        return;
+    }
+    // Connection has failed
+    if (Input.location.status == LocationServiceStatus.Failed) {
+        prt ("Unable to determine device location");
+        return;
+    }
+    // Access granted and location value could be retrieved
+    else {
+        prt ("Location: " + Input.location.lastData.latitude + " " +
+               Input.location.lastData.longitude + " " +
+               Input.location.lastData.altitude + " " +
+               Input.location.lastData.horizontalAccuracy + " " +
+               Input.location.lastData.timestamp);
+    }
+    // Stop service if there is no need to query location updates continuously
+    Input.location.Stop ();
 }
 
 var nose : Vector3; // こういう風に関数の外に変数定義するとGUIで見える
@@ -89,6 +138,14 @@ function Update () { // 毎フレーム呼ばれる
         }        
         tmpcounter0 ++;
     }
+
+    // GPS test
+    if( locationAvailable ) {
+        var msg = "location status" + Input.location.status;
+        MenuWindow.setMessage( msg );
+    }
     
 }
+
+
 
